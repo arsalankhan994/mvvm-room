@@ -1,6 +1,17 @@
 <resources>
-    <string name="app_name">TopStories</string>
-    <string name="title_stories">Home</string>
-    <string name="title_bookmark">Dashboard</string>
+    <string name="app_name">New York Times</string>
+    <string name="title_stories">Top Stories</string>
+    <string name="title_bookmark">Bookmarks</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_confirmation">Confirmation</string>
+    <string name="bookmark_confirmation_message">Are you really want to bookmark this story?</string>
+    <string name="text_yes">Yes</string>
+    <string name="text_no">No</string>
+    <string name="text_something_went_wrong">Something went wrong</string>
+    <string name="bookmarked_successfully">Bookmarked Successfully</string>
+    <string name="already_bookmarked_message">You have already Bookmarked this story</string>
+    <string name="text_no_bookmarks_found">No Bookmarks Found</string>
+    <string name="no_top_stories_found">No Top Stories Found</string>
+    <string name="no_internet_message">No Internet Connection. Please check your internet connection.</string>
+    <string name="tap_here_to_reload_data_text">Tap here to reload data</string>
 </resources>

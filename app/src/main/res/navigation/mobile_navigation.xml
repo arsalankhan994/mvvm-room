@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.cocooncreations.topstories.ui.home.TopStoriesFragment"
+        android:name="com.cocooncreations.topstories.ui.topstories.TopStoriesFragment"
         android:label="@string/title_stories"
         tools:layout="@layout/fragment_top_stories" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.cocooncreations.topstories.ui.dashboard.BookmarkFragment"
+        android:name="com.cocooncreations.topstories.ui.bookmark.BookmarkFragment"
         android:label="@string/title_bookmark"
         tools:layout="@layout/fragment_bookmark" />
 

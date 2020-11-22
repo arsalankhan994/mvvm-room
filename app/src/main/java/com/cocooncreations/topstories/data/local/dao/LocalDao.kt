@@ -8,17 +8,21 @@ import com.cocooncreations.topstories.data.model.ResultEntity
 interface LocalDao {
 
     @Insert
-    suspend fun insert(contact: ResultEntity)
+    suspend fun insert(resultEntity: ResultEntity)
 
     @Update
-    suspend fun update(contact: ResultEntity)
+    suspend fun update(resultEntity: ResultEntity)
 
     @Delete
-    suspend fun delete(contact: ResultEntity)
+    suspend fun delete(resultEntity: ResultEntity)
 
     @Query("DELETE FROM bookmark")
     fun deleteAll()
 
+    @Query("SELECT EXISTS(SELECT * FROM bookmark WHERE url = :url)")
+    suspend fun isRowIsExist(url : String) : Boolean
+
+
     @Query(value = "Select * from bookmark")
-    fun getAllBookMark(): LiveData<List<ResultEntity>>
+    fun getAllBookMark(): List<ResultEntity>
 }

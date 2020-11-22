@@ -1,12 +1,12 @@
 package com.cocooncreations.topstories.data.model
 
+import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-class StoriesEntity : Parcelable {
+
+open class StoriesEntity() : Parcelable {
     @SerializedName("status")
     @Expose
     var status: String? = null
@@ -30,4 +30,34 @@ class StoriesEntity : Parcelable {
     @SerializedName("results")
     @Expose
     var resultEntities: MutableList<ResultEntity>? = null
+
+    constructor(parcel: Parcel) : this() {
+        status = parcel.readString()
+        copyright = parcel.readString()
+        section = parcel.readString()
+        lastUpdated = parcel.readString()
+        numResults = parcel.readValue(Int::class.java.classLoader) as? Int
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(status)
+        parcel.writeString(copyright)
+        parcel.writeString(section)
+        parcel.writeString(lastUpdated)
+        parcel.writeValue(numResults)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<StoriesEntity> {
+        override fun createFromParcel(parcel: Parcel): StoriesEntity {
+            return StoriesEntity(parcel)
+        }
+
+        override fun newArray(size: Int): Array<StoriesEntity?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

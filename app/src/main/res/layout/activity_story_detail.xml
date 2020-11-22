@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.StoryDetailActivity">
+    android:orientation="vertical"
+    android:layout_margin="@dimen/dp8">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp250"
+        android:id="@+id/articleImage"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/subtitle_size"
+            android:gravity="end"
+            android:id="@+id/publishDate"
+            android:layout_marginBottom="@dimen/dp2"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_size"
+            android:id="@+id/articleTitle"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/dp4"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/description_size"
+            android:id="@+id/description"
+            android:layout_marginBottom="@dimen/dp4"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/description_size"
+            android:id="@+id/articleLink"
+            android:autoLink="web"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dp8"/>
+
+    </LinearLayout>
+
+</LinearLayout>

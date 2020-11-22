@@ -7,10 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.cocooncreations.topstories.R
 import com.cocooncreations.topstories.data.model.ResultEntity
+import com.cocooncreations.topstories.delegate.ItemClickDelegate
+import com.cocooncreations.topstories.utils.DateUtil
+import kotlinx.android.synthetic.main.item_top_stories_layout.view.*
 
-class TopStoriesAdapter(var context: Context) :
+
+class TopStoriesAdapter(var context: Context, var listener: ItemClickDelegate) :
     ListAdapter<ResultEntity, TopStoriesAdapter.TopStoriesViewHolder>(TopStoriesDiffCallback()) {
 
     /*
@@ -31,7 +37,7 @@ class TopStoriesAdapter(var context: Context) :
     Bind view on recyclerview
     */
     override fun onBindViewHolder(holder: TopStoriesViewHolder, position: Int) {
-        holder.bind(getItem(position), this.context)
+        holder.bind(getItem(position), this.context, this.listener)
     }
 
     /*
@@ -39,13 +45,31 @@ class TopStoriesAdapter(var context: Context) :
     */
     class TopStoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(resultEntity: ResultEntity, context: Context) {
-//            itemView.contactName.text = resultEntity.phoneNumber.plus(" - ").plus(resultEntity.id)
+        fun bind(resultEntity: ResultEntity, context: Context, listener: ItemClickDelegate) {
+            itemView.title.text = resultEntity.title
+            itemView.publishDate.text = DateUtil.changeDateFormat(resultEntity.publishedDate)
+            Glide.with(context)
+                .load(resultEntity.multimedia?.get(0)?.url)
+                .placeholder(R.drawable.ic_dashboard_black_24dp).
+                    apply(
+                        RequestOptions().override(
+                            200,
+                            200
+                        )
+                    ).into(itemView.articleImage)
+
+            /*
+            pass Entity object for detail screen
+            */
+
+            itemView.mainLayout.setOnClickListener {
+                listener.onClick(resultEntity)
+            }
         }
     }
 
     /*
-    Using diffutil for efficient data notify
+    Using diffutil for efficient views update
     */
     class TopStoriesDiffCallback : DiffUtil.ItemCallback<ResultEntity>() {
 
